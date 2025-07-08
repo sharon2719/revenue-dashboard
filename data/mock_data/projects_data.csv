@@ -1,0 +1,16 @@
+project_id,contract_id,project_name,phase,completion_percentage,deliverable_type,milestone_date,budget_allocated,actual_spent
+PROJ-1,CON-1017,Project A,Implementation,41,System,2025-09-21,31880,24011
+PROJ-2,CON-1018,Project B,Implementation,97,System,2025-06-30,33761,78497
+PROJ-3,CON-1015,Project C,Discovery,66,Software,2025-09-20,40400,34569
+PROJ-4,CON-1008,Project D,Testing,71,Software,2025-07-30,17456,7090
+PROJ-5,CON-1003,Project E,Deployment,39,System,2025-08-28,39497,24748
+PROJ-6,CON-1019,Project F,Discovery,66,Training,2025-07-16,22308,68138
+PROJ-7,CON-1017,Project G,Implementation,39,Report,2025-08-19,84182,52226
+PROJ-8,CON-1014,Project H,Discovery,14,System,2025-08-03,35249,47317
+PROJ-9,CON-1004,Project I,Testing,94,System,2025-08-09,62298,51084
+PROJ-10,CON-1015,Project J,Testing,29,Report,2025-06-17,38048,54545
+PROJ-11,CON-1009,Project K,Implementation,22,Training,2025-09-20,34565,42625
+PROJ-12,CON-1014,Project L,Testing,95,Training,2025-08-29,40556,41468
+PROJ-13,CON-1008,Project M,Testing,84,Software,2025-08-05,40199,41397
+PROJ-14,CON-1003,Project N,Planning,89,System,2025-06-11,10788,71021
+PROJ-15,CON-1007,Project O,Testing,39,Report,2025-09-05,49065,54417

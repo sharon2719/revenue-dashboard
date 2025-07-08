@@ -1,0 +1,21 @@
+contract_id,client_name,total_value,start_date,end_date,payment_terms,contract_type,status,monthly_value
+CON-1000,Healthcare Plus,446661,2025-04-03,2026-01-01,Monthly,Project-based,Completed,31983
+CON-1001,Global NGO,302175,2025-03-25,2025-07-09,Quarterly,Fixed Price,Completed,40159
+CON-1002,EduFoundation,102098,2024-11-09,2026-07-24,Quarterly,Monthly Retainer,Active,27775
+CON-1003,TechCorp Inc,497363,2025-05-07,2025-09-09,Monthly,Hourly Services,Pending,17382
+CON-1004,EduFoundation,458938,2025-06-28,2025-12-12,Net 30,Project-based,Pending,26534
+CON-1005,Global NGO,57382,2025-06-20,2027-02-27,Net 15,Fixed Price,Active,12615
+CON-1006,TechCorp Inc,233613,2025-06-28,2026-03-16,Net 30,Fixed Price,Pending,34500
+CON-1007,Healthcare Plus,53261,2025-02-17,2025-06-24,Net 30,Hourly Services,Completed,11964
+CON-1008,TechCorp Inc,469594,2025-02-18,2026-07-23,Net 15,Monthly Retainer,Completed,11183
+CON-1009,TechCorp Inc,405170,2025-04-21,2025-11-12,Monthly,Fixed Price,Completed,17765
+CON-1010,Healthcare Plus,250770,2024-08-18,2026-06-27,Net 30,Fixed Price,Completed,44120
+CON-1011,Global NGO,247339,2024-11-11,2026-06-14,Net 30,Project-based,Pending,38670
+CON-1012,TechCorp Inc,135598,2025-03-27,2026-07-07,Monthly,Monthly Retainer,Active,20897
+CON-1013,Healthcare Plus,178071,2025-03-04,2027-01-16,Net 30,Hourly Services,Completed,41122
+CON-1014,GreenEnergy Co,264042,2025-04-28,2027-01-13,Net 30,Hourly Services,Pending,7909
+CON-1015,TechCorp Inc,458878,2024-10-16,2025-07-29,Monthly,Hourly Services,Active,17819
+CON-1016,EduFoundation,485896,2025-04-01,2026-11-20,Net 30,Project-based,Pending,22717
+CON-1017,EduFoundation,377144,2024-07-12,2025-03-27,Net 15,Monthly Retainer,Completed,9125
+CON-1018,Global NGO,460880,2025-03-20,2026-06-20,Net 15,Monthly Retainer,Pending,20112
+CON-1019,Global NGO,236157,2024-08-10,2025-04-11,Quarterly,Project-based,Pending,13586

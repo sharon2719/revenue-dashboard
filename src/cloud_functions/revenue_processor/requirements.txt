@@ -1,0 +1,8 @@
+google-cloud-bigquery==3.4.0
+functions-framework==3.5.0
+numpy<2
+pandas==2.0.3
+plotly==5.15.0
+python-dotenv==1.0.0
+gunicorn==21.2.0
+flask==2.3.3

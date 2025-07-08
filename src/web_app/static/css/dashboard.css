@@ -1,0 +1,185 @@
+/* Custom Dashboard Styles */
+:root {
+    --primary-color: #0d6efd;
+    --success-color: #198754;
+    --info-color: #0dcaf0;
+    --warning-color: #ffc107;
+    --danger-color: #dc3545;
+    --light-gray: #f8f9fa;
+    --border-color: #dee2e6;
+}
+
+body {
+    background-color: var(--light-gray);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
+    transition: transform 0.2s ease-in-out;
+}
+
+.card:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+}
+
+.card-header {
+    background-color: white;
+    border-bottom: 1px solid var(--border-color);
+    border-radius: 10px 10px 0 0 !important;
+}
+
+.summary-card {
+    text-align: center;
+    padding: 2rem;
+}
+
+.summary-card .card-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+
+.summary-card .card-value {
+    font-size: 2.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.summary-card .card-label {
+    font-size: 1rem;
+    color: #2c2b2b;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.summary-card.contracts {
+    background: linear-gradient(135deg, var(--primary-color), #0b5ed7);
+    color: white;
+}
+
+.summary-card.revenue {
+    background: linear-gradient(135deg, var(--success-color), #157347);
+    color: white;
+}
+
+.summary-card.remaining {
+    background: linear-gradient(135deg, var(--warning-color), #e6a500);
+    color: white;
+}
+
+.summary-card.percentage {
+    background: linear-gradient(135deg, var(--info-color), #0aa1dd);
+    color: white;
+}
+
+.table th {
+    background-color: var(--light-gray);
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.875rem;
+    letter-spacing: 0.5px;
+}
+
+.progress {
+    height: 20px;
+    border-radius: 10px;
+}
+
+.progress-bar {
+    border-radius: 10px;
+    transition: width 0.3s ease;
+}
+
+.currency {
+    font-weight: 600;
+}
+
+.positive {
+    color: var(--success-color);
+}
+
+.negative {
+    color: var(--danger-color);
+}
+
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(255, 255, 255, 0.8);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .summary-card {
+        padding: 1.5rem;
+    }
+    
+    .summary-card .card-value {
+        font-size: 2rem;
+    }
+    
+    .summary-card .card-icon {
+        font-size: 2.5rem;
+    }
+    
+    .table-responsive {
+        font-size: 0.875rem;
+    }
+}
+
+/* Chart container styling */
+.chart-container {
+    position: relative;
+    height: 400px;
+    margin: 20px 0;
+}
+
+/* Animation for cards */
+.card {
+    animation: fadeInUp 0.6s ease-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Custom scrollbar */
+.table-responsive::-webkit-scrollbar {
+    height: 8px;
+}
+
+.table-responsive::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 10px;
+}
+
+.table-responsive::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
