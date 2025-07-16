@@ -1,0 +1,29 @@
+# Virtual environment
+venv/
+
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+
+# Editor/IDE specific files
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+*.bak # Backup files
+
+# Operating system specific files
+.DS_Store
+
+# Git ignored files
+.git/
+.gitignore
+
+# Raw data files (these are uploaded to BigQuery, not needed in the app container)
+data/
+*.csv
+
+# Logs or temporary files
+*.log
+tmp/

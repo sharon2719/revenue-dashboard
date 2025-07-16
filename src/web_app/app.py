@@ -91,13 +91,15 @@ class DashboardData:
                 END, 2
             ) as milestone_based_revenue,
             
-            -- Total recognized revenue
+            -- Total recognized revenue (MODIFIED SECTION)
             ROUND(
                 CASE 
                     WHEN cm.payment_terms = 'Time & Materials' THEN COALESCE(tbc.total_time_value, 0)
                     WHEN cm.payment_terms = 'Fixed Price' THEN cm.total_value * (COALESCE(pc.avg_completion_percentage, 0) / 100)
                     WHEN cm.payment_terms = 'Milestone' THEN cm.total_value * (COALESCE(pc.completed_projects, 0) / NULLIF(pc.total_projects, 0))
-                    ELSE 0
+                    -- General case for other payment terms (e.g., Monthly, Net 30, Net 15, Quarterly)
+                    -- Assumes avg_completion_percentage is a relevant metric for recognition across all types not explicitly handled above
+                    ELSE cm.total_value * (COALESCE(pc.avg_completion_percentage, 0) / 100) 
                 END, 2
             ) as total_recognized_revenue,
             
@@ -107,7 +109,8 @@ class DashboardData:
                     WHEN cm.payment_terms = 'Time & Materials' THEN COALESCE(tbc.total_time_value, 0)
                     WHEN cm.payment_terms = 'Fixed Price' THEN cm.total_value * (COALESCE(pc.avg_completion_percentage, 0) / 100)
                     WHEN cm.payment_terms = 'Milestone' THEN cm.total_value * (COALESCE(pc.completed_projects, 0) / NULLIF(pc.total_projects, 0))
-                    ELSE 0
+                    -- Also apply the same recognition logic for remaining revenue calculation
+                    ELSE cm.total_value * (COALESCE(pc.avg_completion_percentage, 0) / 100)
                 END, 2
             ) as remaining_revenue,
             
@@ -154,7 +157,8 @@ class DashboardData:
             COUNT(*) as contract_count,
             SUM(rrc.total_value) as total_contract_value,
             SUM(rrc.total_recognized_revenue) as total_recognized_revenue,
-            ROUND((SUM(rrc.total_recognized_revenue) / SUM(rrc.total_value)) * 100, 2) as recognition_percentage
+            -- Ensure no division by zero for recognition_percentage
+            ROUND(SAFE_DIVIDE(SUM(rrc.total_recognized_revenue), SUM(rrc.total_value)) * 100, 2) as recognition_percentage
         FROM `revenue_data.revenue_recognition_current` rrc
         JOIN `revenue_data.salesforce_contracts` sc ON rrc.contract_id = sc.contract_id
         GROUP BY sc.payment_terms
@@ -250,6 +254,11 @@ def api_summary():
     """API endpoint for summary data"""
     try:
         summary = data_handler.get_revenue_summary()
+        # Ensure division by zero is handled for recognition_rate
+        recognition_rate = 0.0
+        if summary.total_contract_value is not None and summary.total_contract_value != 0:
+            recognition_rate = round((summary.total_recognized_revenue / summary.total_contract_value) * 100, 2)
+
         return jsonify({
             'total_contracts': summary.total_contracts,
             'total_contract_value': float(summary.total_contract_value),
@@ -257,7 +266,7 @@ def api_summary():
             'total_remaining_revenue': float(summary.total_remaining_revenue),
             'avg_completion_percentage': float(summary.avg_completion_percentage),
             'unique_clients': summary.unique_clients,
-            'recognition_rate': round((summary.total_recognized_revenue / summary.total_contract_value) * 100, 2)
+            'recognition_rate': recognition_rate
         })
     except Exception as e:
         return jsonify({'error': str(e)}), 500

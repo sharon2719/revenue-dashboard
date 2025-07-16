@@ -77,24 +77,28 @@ SELECT
   ) as milestone_based_revenue,
   
   -- Total recognized revenue
-  ROUND(
+  -- Total recognized revenue (MODIFIED SECTION)
+ROUND(
     CASE 
-      WHEN cm.payment_terms = 'Time & Materials' THEN COALESCE(tbc.total_time_value, 0)
-      WHEN cm.payment_terms = 'Fixed Price' THEN cm.total_value * (COALESCE(pc.avg_completion_percentage, 0) / 100)
-      WHEN cm.payment_terms = 'Milestone' THEN cm.total_value * (COALESCE(pc.completed_projects, 0) / NULLIF(pc.total_projects, 0))
-      ELSE 0
+        WHEN cm.payment_terms = 'Time & Materials' THEN COALESCE(tbc.total_time_value, 0)
+        WHEN cm.payment_terms = 'Fixed Price' THEN cm.total_value * (COALESCE(pc.avg_completion_percentage, 0) / 100)
+        WHEN cm.payment_terms = 'Milestone' THEN cm.total_value * (COALESCE(pc.completed_projects, 0) / NULLIF(pc.total_projects, 0))
+        -- General case for other payment terms (e.g., Monthly, Net 30, Net 15, Quarterly)
+        -- Assumes avg_completion_percentage is a relevant metric for recognition across all types not explicitly handled above
+        ELSE cm.total_value * (COALESCE(pc.avg_completion_percentage, 0) / 100) 
     END, 2
-  ) as total_recognized_revenue,
-  
-  -- Remaining revenue to recognize
-  ROUND(
+) as total_recognized_revenue,
+
+-- Remaining revenue to recognize (MODIFIED SECTION)
+ROUND(
     cm.total_value - CASE 
-      WHEN cm.payment_terms = 'Time & Materials' THEN COALESCE(tbc.total_time_value, 0)
-      WHEN cm.payment_terms = 'Fixed Price' THEN cm.total_value * (COALESCE(pc.avg_completion_percentage, 0) / 100)
-      WHEN cm.payment_terms = 'Milestone' THEN cm.total_value * (COALESCE(pc.completed_projects, 0) / NULLIF(pc.total_projects, 0))
-      ELSE 0
+        WHEN cm.payment_terms = 'Time & Materials' THEN COALESCE(tbc.total_time_value, 0)
+        WHEN cm.payment_terms = 'Fixed Price' THEN cm.total_value * (COALESCE(pc.avg_completion_percentage, 0) / 100)
+        WHEN cm.payment_terms = 'Milestone' THEN cm.total_value * (COALESCE(pc.completed_projects, 0) / NULLIF(pc.total_projects, 0))
+        -- Also apply the same recognition logic for remaining revenue calculation
+        ELSE cm.total_value * (COALESCE(pc.avg_completion_percentage, 0) / 100)
     END, 2
-  ) as remaining_revenue,
+) as remaining_revenue,
   
   -- Additional metrics
   COALESCE(pc.avg_completion_percentage, 0) as avg_completion_percentage,
