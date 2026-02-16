@@ -13,11 +13,6 @@ A comprehensive web-based dashboard for tracking and visualizing revenue recogni
 * **Contract Details Table**: Detailed view of individual contracts with progress tracking.
 * **Responsive Design**: Optimized for both desktop and mobile devices.
 
-## 🚀 Live Demo
-
-Experience the dashboard live here:
-[https://revenue-dashboard-1031424939407.us-central1.run.app/](https://revenue-dashboard-1031424939407.us-central1.run.app/)
-
 ## 📊 Key Metrics
 
 The dashboard prominently displays:
